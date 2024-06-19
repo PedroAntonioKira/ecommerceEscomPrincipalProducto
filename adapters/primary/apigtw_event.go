@@ -55,9 +55,9 @@ func Manejadores(path string, method string, body string, headers map[string]str
 
     //Validamos y analizamos que nos viene en el path
     switch path[16:20] {
-	case "cate":
+	case "prod":
 		fmt.Println("Entramos a Category")
-		return ProcesoCategory(body, path, method, user, idn, request)
+		return ProcesoProducts(body, path, method, user, idn, request)
     default:
 		fmt.Println("No es la ruta correcta: No es por categoria, Detección Sospechosa")
 		//	return ProcesoOrder(body, path, method, user, idn, request)
@@ -66,30 +66,30 @@ func Manejadores(path string, method string, body string, headers map[string]str
 	return 400, "Method Invalid loquisimo 09"
 }
 
-func ProcesoCategory(body string, path string, method string, user string, id int, request events.APIGatewayProxyRequest) (int, string) {
+func ProcesoProducts(body string, path string, method string, user string, id int, request events.APIGatewayProxyRequest) (int, string) {
 	//Validamos el metodo Que estamos Recibiendo
 	pathParams01 := request.PathParameters["id"] //Alfanumericos
 	pathParams02, _ := strconv.Atoi(pathParams01) //Numerico
 
 	switch method {
 	case "POST":
-		fmt.Println("Si entramos A POST de Category")
+		fmt.Println("Si entramos A POST de Product")
 		return use_cases.AddCategoryUC(body, user)
 	case "PUT":
-		fmt.Println("Si entramos A PUT de Category")
+		fmt.Println("Si entramos A PUT de Product")
 		return use_cases.UpdateCategoryUC(body, user, pathParams02)
 	case "DELETE":
-		fmt.Println("Si entramos A DELETE de Category")
+		fmt.Println("Si entramos A DELETE de Product")
 		return use_cases.DeleteCategoryUC(body, user, pathParams02)
 		//return routers.DeleteCategory(body, user, id)
 	case "GET":
-		fmt.Println("Si entramos A GET de Category")
-        if(request.Resource == "/ecommerceEscom/category"){
-            fmt.Println("Se deben de traer todas las categorias")
+		fmt.Println("Si entramos A GET de Product")
+        if(request.Resource == "/ecommerceEscom/product"){
+            fmt.Println("Se deben de traer todos los Productos")
 			return use_cases.ListCategoryUC(body, request)
-        }else if(request.Resource == "/ecommerceEscom/category/{id}"){
+        }else if(request.Resource == "/ecommerceEscom/product/{id}"){
 			id := request.PathParameters["id"]
-            fmt.Println("Se debe de traer una categoria en especifico")
+            fmt.Println("Se debe de traer un Producto en especifico")
 			fmt.Println(id)
 			return use_cases.GetCategoryUC(body, request, pathParams02)
 			//return use_cases.ListProductsUC(body, request)
