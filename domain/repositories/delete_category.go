@@ -4,7 +4,7 @@ import (
 	//Importaciones de go (vienen incluidas al instalar)
 	"fmt"
 	//importaciones personalizadas (creadas desde cero)
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/domain/queries_category"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/domain/queries_product"
 )
 
 func DeleteCategoryRepositories(body string, user string, pathParams int) (int, string) {
@@ -12,7 +12,7 @@ func DeleteCategoryRepositories(body string, user string, pathParams int) (int, 
 	response := "Vacio Delete Category Repositories"
 
 	fmt.Println("Entramos a DeleteCategoryRepositories")
-	status, response = queries_category.DeleteCategoryQuery(body, user, pathParams)
+	status, response = queries_product.DeleteCategoryQuery(body, user, pathParams)
 
 	return status, response
 }
