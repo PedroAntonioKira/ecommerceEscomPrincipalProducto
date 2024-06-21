@@ -4,7 +4,7 @@ import (
 	//Importaciones de go (vienen incluidas al instalar)
 	"database/sql"
 	"fmt"
-	//"strconv"
+	"strconv"
 	//"strings"
 
 	//"strings"
@@ -15,10 +15,11 @@ import (
 	//importaciones personalizadas (creadas desde cero)
 	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/adapters/secundary"
 	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/entities"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/utils"
 )
 
-func AddCategoryDatabase(c entities.Category) (int64, error) {
-	fmt.Println("Comienza Registro de InsertCategory")
+func AddProductDatabase(p entities.Product)  (int64, error) {
+	fmt.Println("Comienza Registro de Producto")
 
 	//Nos conectamos a la base de datos
 	err := secundary.DbConnect()
@@ -31,8 +32,59 @@ func AddCategoryDatabase(c entities.Category) (int64, error) {
 	// Generamos un "defer" para que se cierre la conexión a la base de datos hasta el final de la función
 	defer secundary.Db.Close()
 
-	//Declaramos la sentencia SQL para insertar la categoria
-	sentencia := "INSERT INTO category (Categ_Name, Categ_Path) VALUES ('" + c.CategName + "','" + c.CategPath + "')"
+	//Declaramos la sentencia SQL para insertar el Producto.
+	sentencia := "INSERT INTO products (Prod_Title "
+
+	//Preguntamos si cada uno de los campos de la estructura nos vino como dato para incluirlo o no
+
+	//Descripción del producto
+	if len(p.ProdDescrition) > 0 {
+		sentencia += ", Prod_Description"
+	}
+	//Precio del Producto
+	if p.ProdPrice > 0 {
+		sentencia += ", Prod_Price"
+	}
+	//Identificador de la Categoria del Producto
+	if p.ProdCategId > 0 {
+		sentencia += ", Prod_CategoryId"
+	}
+	//Stock del Producto
+	if p.ProdStock > 0 {
+		sentencia += ", Prod_Stock"
+	}
+	//Ruta del Producto
+	if len(p.ProdPath) > 0 {
+		sentencia += ", Prod_Path"
+	}
+
+	sentencia += ") VALUES ('" + utils.EscapeString(p.ProdTitle) + "'"
+
+	//Preguntamos de nuevo si cada uno de los campos de la estructura nos vino como dato para incluirlo o no
+
+	//Descripción del producto
+	if len(p.ProdDescrition) > 0 {
+		sentencia += ",'" + utils.EscapeString(p.ProdDescrition) + "'"
+	}
+	//Precio del Producto
+	if p.ProdPrice > 0 {
+		sentencia += ", " + strconv.FormatFloat(p.ProdPrice, 'e', -1, 64)
+	}
+	//Identificador de la Categoria del Producto
+	if p.ProdCategId > 0 {
+		sentencia += ", " + strconv.Itoa(p.ProdCategId)
+	}
+	//Stock del Producto
+	if p.ProdStock > 0 {
+		sentencia += ", " + strconv.Itoa(p.ProdStock)
+	}
+	//Ruta del Producto
+	if len(p.ProdPath) > 0 {
+		sentencia += ", '" + utils.EscapeString(p.ProdPath) + "'"
+	}
+
+	//Cerramos la consulta SQL
+	sentencia += ")"
 
 	//Nos ayudara a guardar el resultado cuando ejecutemos la sentencia SQL (trae filas afectadas y ultima inserción)
 	var result sql.Result
@@ -55,8 +107,11 @@ func AddCategoryDatabase(c entities.Category) (int64, error) {
 		return 0, err
 	}
 
-	fmt.Println("Insert Category > Ejecución Exitosa")
+	fmt.Println("Insert Product > Ejecución Exitosa")
 
 	return LastInsertId, nil
 
 }
+
+
+

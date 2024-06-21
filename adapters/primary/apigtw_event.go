@@ -55,8 +55,8 @@ func Manejadores(path string, method string, body string, headers map[string]str
 
     //Validamos y analizamos que nos viene en el path
     switch path[16:20] {
-	case "cate":
-		fmt.Println("Entramos a Category")
+	case "prod":
+		fmt.Println("Entramos a Producto")
 		return ProcesoCategory(body, path, method, user, idn, request)
     default:
 		fmt.Println("No es la ruta correcta: No es por categoria, Detección Sospechosa")
@@ -73,8 +73,9 @@ func ProcesoCategory(body string, path string, method string, user string, id in
 
 	switch method {
 	case "POST":
-		fmt.Println("Si entramos A POST de Category")
-		return use_cases.AddCategoryUC(body, user)
+		fmt.Println("Si entramos A POST de Producto")
+		return use_cases.AddProductUC(body, user)
+		//return use_cases.AddCategoryUC(body, user)
 	case "PUT":
 		fmt.Println("Si entramos A PUT de Category")
 		return use_cases.UpdateCategoryUC(body, user, pathParams02)

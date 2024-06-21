@@ -5,11 +5,11 @@ import (
 	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/queries_category"
 )
 
-func AddCategoryRepositories(body string, user string) (int, string) {
+func AddProductRepositories(body string, user string) (int, string) {
 	status := 200
 	response := "Vacio Add Category Repositories"
 
-	status, response = queries_category.AddCategoryQuery(body, user)
+	status, response = queries_category.AddProductQuery(body, user)
 
 	return status, response
 }
