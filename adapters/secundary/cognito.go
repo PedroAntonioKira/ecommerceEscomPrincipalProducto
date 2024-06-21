@@ -10,7 +10,7 @@ import (
 
 	//importaciones personalizadas (creadas desde cero)
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/models"
-    "github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/domain/entities"
+    "github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/entities"
 )
 
 //La parte de la estructura la implemente en models "type TokenJSON struct"

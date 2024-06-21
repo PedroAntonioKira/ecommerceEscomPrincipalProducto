@@ -9,8 +9,8 @@ import (
 //	"time"
 
 	//importaciones personalizadas (creadas desde cero)
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/adapters/secundary"
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/domain/entities"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/adapters/secundary"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/entities"
 )
 
 var SecretModel entities.SecretRDSJson

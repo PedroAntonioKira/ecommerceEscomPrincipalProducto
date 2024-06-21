@@ -10,7 +10,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 
 	//importaciones personalizadas (creadas desde cero)
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/domain/entities"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/entities"
 	//"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/adapters/secundary"
 //	"github.com/PedroAntonioKira/EcommerceEscomAPIREST/models"
 //	"github.com/PedroAntonioKira/EcommerceEscomAPIREST/secretsmanager"

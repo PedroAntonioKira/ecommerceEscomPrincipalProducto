@@ -13,7 +13,7 @@ import (
 	//importaciones personalizadas (creadas desde cero)
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/awsgo"
 	//"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/adapters/secundary"
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/domain/entities"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/entities"
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/models"
 )
 

@@ -11,7 +11,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 
 	//importaciones personalizadas (creadas desde cero)
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/domain/repositories"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/repositories"
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/bd"
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/models"
 )

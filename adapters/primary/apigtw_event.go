@@ -8,8 +8,8 @@ import (
 	//importaciones externas (descargadas)
 	"github.com/aws/aws-lambda-go/events"
 	//importaciones personalizadas (creadas desde cero)
-    "github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/utils"
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/domain/use_cases"
+    "github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/utils"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/use_cases"
 
 )
 
@@ -55,9 +55,9 @@ func Manejadores(path string, method string, body string, headers map[string]str
 
     //Validamos y analizamos que nos viene en el path
     switch path[16:20] {
-	case "prod":
-		fmt.Println("Entramos a Prodcuts")
-		return ProcesoProducts(body, path, method, user, idn, request)
+	case "cate":
+		fmt.Println("Entramos a Category")
+		return ProcesoCategory(body, path, method, user, idn, request)
     default:
 		fmt.Println("No es la ruta correcta: No es por categoria, Detección Sospechosa")
 		//	return ProcesoOrder(body, path, method, user, idn, request)
@@ -66,31 +66,30 @@ func Manejadores(path string, method string, body string, headers map[string]str
 	return 400, "Method Invalid loquisimo 09"
 }
 
-func ProcesoProducts(body string, path string, method string, user string, id int, request events.APIGatewayProxyRequest) (int, string) {
+func ProcesoCategory(body string, path string, method string, user string, id int, request events.APIGatewayProxyRequest) (int, string) {
 	//Validamos el metodo Que estamos Recibiendo
 	pathParams01 := request.PathParameters["id"] //Alfanumericos
 	pathParams02, _ := strconv.Atoi(pathParams01) //Numerico
 
 	switch method {
 	case "POST":
-		fmt.Println("Si entramos A POST de Product")
-		return use_cases.AddProductUC(body, user)
-		//return use_cases.AddCategoryUC(body, user)
+		fmt.Println("Si entramos A POST de Category")
+		return use_cases.AddCategoryUC(body, user)
 	case "PUT":
-		fmt.Println("Si entramos A PUT de Product")
-		//return use_cases.UpdateCategoryUC(body, user, pathParams02)
+		fmt.Println("Si entramos A PUT de Category")
+		return use_cases.UpdateCategoryUC(body, user, pathParams02)
 	case "DELETE":
-		fmt.Println("Si entramos A DELETE de Product")
-		//return use_cases.DeleteCategoryUC(body, user, pathParams02)
+		fmt.Println("Si entramos A DELETE de Category")
+		return use_cases.DeleteCategoryUC(body, user, pathParams02)
 		//return routers.DeleteCategory(body, user, id)
 	case "GET":
-		fmt.Println("Si entramos A GET de Product")
-        if(request.Resource == "/ecommerceEscom/product"){
-            fmt.Println("Se deben de traer todos los Productos")
-			//return use_cases.ListCategoryUC(body, request)
-        }else if(request.Resource == "/ecommerceEscom/product/{id}"){
+		fmt.Println("Si entramos A GET de Category")
+        if(request.Resource == "/ecommerceEscom/category"){
+            fmt.Println("Se deben de traer todas las categorias")
+			return use_cases.ListCategoryUC(body, request)
+        }else if(request.Resource == "/ecommerceEscom/category/{id}"){
 			id := request.PathParameters["id"]
-            fmt.Println("Se debe de traer un Producto en especifico")
+            fmt.Println("Se debe de traer una categoria en especifico")
 			fmt.Println(id)
 			return use_cases.GetCategoryUC(body, request, pathParams02)
 			//return use_cases.ListProductsUC(body, request)
@@ -99,7 +98,7 @@ func ProcesoProducts(body string, path string, method string, user string, id in
         }
 		//return routers.SelectCategories(body, request)
 	}
-	return 400, "Method Invalid Para Products, revisar en el codigo"
+	return 400, "Method Invalid Para Categorias, revisar en el codigo"
 }
 
 /*
@@ -138,6 +137,26 @@ func ProcesoStock(body string, path string, method string, user string, id int, 
 func ProcesoAddress(body string, path string, method string, user string, id int, request events.APIGatewayProxyRequest) (int, string) {
 
 	return 400, "Method Invalid"
+}
+
+func ProcesoCategory(body string, path string, method string, user string, id int, request events.APIGatewayProxyRequest) (int, string) {
+
+	//Validamos el metodo Que estamos Recibiendo
+	switch method {
+	case "POST":
+		fmt.Println("Si entramos A POST de Category")
+		return routers.InsertCategory(body, user)
+	case "PUT":
+		fmt.Println("Si entramos A PUT de Category")
+		return routers.UpdateCategory(body, user, id)
+	case "DELETE":
+		fmt.Println("Si entramos A DELETE de Category")
+		return routers.DeleteCategory(body, user, id)
+	case "GET":
+		fmt.Println("Si entramos A GET de Category")
+		return routers.SelectCategories(body, request)
+	}
+	return 400, "Method Invalid Para Categorias, revisar en el codigo"
 }
 
 func ProcesoOrder(body string, path string, method string, user string, id int, request events.APIGatewayProxyRequest) (int, string) {

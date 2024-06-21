@@ -13,8 +13,8 @@ import (
 	lambda02 "github.com/aws/aws-lambda-go/lambda"
 
 	//importaciones personalizadas (creadas desde cero)
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/adapters/primary"
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/adapters/secundary"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/adapters/primary"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/adapters/secundary"
 	//"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/utils"
 )
 

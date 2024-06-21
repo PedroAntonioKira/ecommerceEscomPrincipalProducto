@@ -4,7 +4,7 @@ import (
 	//Importaciones de go (vienen incluidas al instalar)
 	"fmt"
 	//importaciones personalizadas (creadas desde cero)
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/domain/repositories"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/repositories"
 )
 
 func DeleteCategoryUC(body string, user string, pathParams int) (int, string) {

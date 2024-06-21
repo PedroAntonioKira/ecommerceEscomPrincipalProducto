@@ -11,7 +11,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 
 	//importaciones personalizadas (creadas desde cero)
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalCategoria/domain/queries_product"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/queries_category"
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/bd"
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/models"
 )
@@ -23,7 +23,7 @@ func ListCategoryRepositories(body string, request events.APIGatewayProxyRequest
 
 
 	fmt.Println("Entramos a ListCategoryRepositories")
-	status, response = queries_product.ListCategoryQuery(body, request)
+	status, response = queries_category.ListCategoryQuery(body, request)
 
 
 	return status, response
