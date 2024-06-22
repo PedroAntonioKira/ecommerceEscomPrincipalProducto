@@ -18,13 +18,8 @@ import (
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/models"
 )
 
-func DeleteCategoryQuery(body string, User string, pathParams int) (int, string) {
+func DeleteProductQuery(body string, User string, pathParams int) (int, string) {
 	
-	// Validamos que nos hayan pasado un Id valido
-	if pathParams == 0 {
-		return 400, "Debe de especificar el ID de la categoria a borrar."
-	}
-
 	//Verificamos si User Is Admin
 	isAdmin, msg := secundary.UserIsAdmin(User)
 
@@ -33,14 +28,14 @@ func DeleteCategoryQuery(body string, User string, pathParams int) (int, string)
 		return 400, msg
 	}
 
-	//Eliminamos la categoria que corresponde al id
-	err := database.DeleteCategoryQuery(pathParams)
+	//Actualizamos el Producto.
+	err2 := database.DeleteProductQuery(pathParams)
 
-	// Validamos que no haya surgido un error al eliminar la categoria
-	if err != nil {
-		return 400, "Ocurrió un error al intentar realziar el DELETE de la categoria" + strconv.Itoa(pathParams) + " > " + err.Error()
+	//Verificamos no exista un error al momento en que actualizamos el producto.
+	if err2 != nil {
+		return 400, "Ocurrio un error al intentar realizar el DELETE del producto" + strconv.Itoa(pathParams) + " > " + err2.Error()
 	}
 
-	return 200, "Delete OK"
+	return 200, "Delete Product OK"
 
 }

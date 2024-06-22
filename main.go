@@ -24,7 +24,7 @@ func main() {
 
 func EjecutoLambda(ctx context.Context, request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 
-	fmt.Println("Aqui inicia el programa")
+	fmt.Println("Aqui inicia el programa de Productos")
 
 	secundary.InicializoAWS()
 

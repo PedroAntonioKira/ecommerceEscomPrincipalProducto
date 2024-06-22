@@ -78,10 +78,12 @@ func ProcesoCategory(body string, path string, method string, user string, id in
 		//return use_cases.AddCategoryUC(body, user)
 	case "PUT":
 		fmt.Println("Si entramos A PUT de Category")
-		return use_cases.UpdateCategoryUC(body, user, pathParams02)
+		return use_cases.UpdateProductUC(body, user, pathParams02)
+		//return use_cases.UpdateCategoryUC(body, user, pathParams02)
 	case "DELETE":
 		fmt.Println("Si entramos A DELETE de Category")
-		return use_cases.DeleteCategoryUC(body, user, pathParams02)
+		return use_cases.DeleteProductUC(body, user, pathParams02)
+		//return use_cases.DeleteCategoryUC(body, user, pathParams02)
 		//return routers.DeleteCategory(body, user, id)
 	case "GET":
 		fmt.Println("Si entramos A GET de Category")

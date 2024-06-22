@@ -5,11 +5,11 @@ import (
 	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/repositories"
 )
 
-func UpdateCategoryUC(body string, user string, pathParams int) (int, string) {
+func UpdateProductUC(body string, user string, pathParams int) (int, string) {
 	status := 200
 	response := "Vacio Update Category Use Case"
 
-	status, response = repositories.UpdateCategoryRepositories(body, user, pathParams)
+	status, response = repositories.UpdateProductRepositories(body, user, pathParams)
 
 	return status, response
 }

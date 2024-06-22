@@ -21,9 +21,9 @@ import (
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/tools"
 )
 
-func DeleteCategoryQuery(pathParams int) error {
+func DeleteProductQuery(pathParams int) error {
 
-	fmt.Println("Comienza Registro de DeleteCategory")
+	fmt.Println(" Comienza Delete Product")
 
 	//Nos conectamos a la base de datos
 	err := secundary.DbConnect()
@@ -36,8 +36,8 @@ func DeleteCategoryQuery(pathParams int) error {
 	// Generamos un "defer" para que se cierre la conexión a la base de datos hasta el final de la función
 	defer secundary.Db.Close()
 
-	//Declaramos la sentencia SQL para insertar la categoria
-	sentencia := "DELETE FROM category WHERE Categ_Id = " + strconv.Itoa(pathParams)
+	//Declaramos la sentencia SQL para insertar el Producto.
+	sentencia := "DELETE FROM products WHERE Prod_Id = " + strconv.Itoa(pathParams)
 
 	//Ejecutamos la sentencia SQL
 	_, err = secundary.Db.Exec(sentencia)
@@ -48,7 +48,7 @@ func DeleteCategoryQuery(pathParams int) error {
 		return err
 	}
 
-	fmt.Println("Delete Category > Ejecución Exitosa ! Eliminación Completada")
+	fmt.Println("Delete Produc > Ejecución Exitosa!")
 
 	return nil
 
