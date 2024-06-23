@@ -1,29 +1,28 @@
-package repositories
+package use_cases
 
 import (
 	//Importaciones de go (vienen incluidas al instalar)
 //	"encoding/json"
 //	"strconv"
 
-	"fmt"
+	//"fmt"
 
 	//importaciones externas (descargadas)
 	"github.com/aws/aws-lambda-go/events"
 
 	//importaciones personalizadas (creadas desde cero)
-	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/queries_category"
+	"github.com/PedroAntonioKira/ecommerceEscomPrincipalProducto/domain/repositories"
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/bd"
 	//"github.com/PedroAntonioKira/EcommerceEscomAPIREST/models"
 )
 
-func GetCategoryRepositories(body string, request events.APIGatewayProxyRequest, pathParams int) (int, string) {
+func ListProductUC(body string, request events.APIGatewayProxyRequest) (int, string) {
 
 	status := 200
 	response := "Vacio"
 
 
-	fmt.Println("Entramos a GetCategoryRepositories")
-	status, response = queries_category.GetCategoryQuery(body, request, pathParams)
+	status, response = repositories.ListProductRepositories(body, request)
 
 
 	return status, response

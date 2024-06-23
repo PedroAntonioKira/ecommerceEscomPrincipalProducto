@@ -87,14 +87,14 @@ func ProcesoCategory(body string, path string, method string, user string, id in
 		//return routers.DeleteCategory(body, user, id)
 	case "GET":
 		fmt.Println("Si entramos A GET de Category")
-        if(request.Resource == "/ecommerceEscom/category"){
+        if(request.Resource == "/ecommerceEscom/product"){
             fmt.Println("Se deben de traer todas las categorias")
-			return use_cases.ListCategoryUC(body, request)
-        }else if(request.Resource == "/ecommerceEscom/category/{id}"){
+			return use_cases.ListProductUC(body, request)
+        }else if(request.Resource == "/ecommerceEscom/product/{id}"){
 			id := request.PathParameters["id"]
             fmt.Println("Se debe de traer una categoria en especifico")
 			fmt.Println(id)
-			return use_cases.GetCategoryUC(body, request, pathParams02)
+			return use_cases.GetProductUC(body, request, pathParams02)
 			//return use_cases.ListProductsUC(body, request)
         }else{
             fmt.Println("Algo esta mal con el Metodo Get No entra en ningun caso")

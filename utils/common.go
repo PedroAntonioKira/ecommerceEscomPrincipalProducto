@@ -32,7 +32,8 @@ func ValidoAuthorization(path string, method string, headers map[string]string) 
 	fmt.Println(method)
 	if (path == "/ecommerceEscom/product" && method == "GET") ||
 		(path == "/ecommerceEscom/category" && method == "GET") ||
-		(strings.Contains(path, "/ecommerceEscom/category") && method == "GET") {
+		(strings.Contains(path, "/ecommerceEscom/category") && method == "GET") || 
+		(strings.Contains(path, "/ecommerceEscom/product") && method == "GET") {
 		
 			fmt.Println("No Necesita Autorización porque es es GET")
 			return true, 200, ""
